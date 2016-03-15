@@ -1,0 +1,22 @@
+@(banner: Html)(registerForm: Form[RegisterData])
+
+@import util.FormHelpers._
+@layout("Register")(banner) {
+
+} {
+    @if(registerForm.hasErrors) {
+        <ul>
+        @registerForm.errors.map { error =>
+            <li>@error.message</li>
+        }
+        </ul>
+    }
+    @helper.form(action = routes.Auth.submitRegister()) {
+        @helper.inputText(registerForm("Username"))
+        @helper.inputPassword(registerForm("Password"))
+        @helper.inputPassword(registerForm("Confirm Password"))
+        @helper.inputText(registerForm("Email"))
+        @helper.inputText(registerForm("Confirm Email"))
+        <button type="submit">Login</button>
+    }
+}

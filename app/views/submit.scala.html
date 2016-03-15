@@ -1,0 +1,18 @@
+@import models.user.User
+@(banner: Html)(user: User, submitForm: Form[Prompt])
+@import util.FormHelpers._
+
+@layout("Submit a prompt")(banner) {
+
+} {
+    @if(user != null) {
+        @helper.form(action = routes.Application.submitPrompt(user.username)) {
+            @helper.textarea(submitForm("Prompt"), args = 'rows -> 4, 'cols -> 50)
+            <button type="submit">Submit Prompt</button>
+        }
+    } else {
+        <h1>User not found</h1>
+    }
+
+}
+

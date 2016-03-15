@@ -1,0 +1,18 @@
+@(banner: Html)(loginForm: Form[LoginData])
+@import util.FormHelpers._
+@layout("Login")(banner) {
+
+} {
+    @if(loginForm.hasGlobalErrors) {
+        <ul>
+        @for(error <- loginForm.globalErrors) {
+            <li>@error.message</li>
+        }
+        </ul>
+    }
+    @helper.form(action = routes.Auth.submitLogin()) {
+        @helper.inputText(loginForm("Username"))
+        @helper.inputPassword(loginForm("Password"))
+        <button type="submit">Login</button>
+    }
+}

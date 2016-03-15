@@ -1,0 +1,13 @@
+@(implicit session: Session)
+
+<div id="window-header">
+    <span id="title">Promptiosaurus</span>
+    <div id="userSection">
+        @if(session.get(Security.username).isEmpty) {
+            <a id="signOut" href="/login">Log in</a> or <a id="registerLink" href="/register">Register</a>
+        } else {
+            <p>@session.get(Security.username)</p>
+            <a id="signOut" href="/logout">Sign out</a>
+        }
+    </div>
+</div>

@@ -1,0 +1,7 @@
+@(banner: Html)(username: String)
+
+@layout("User Test")(banner) {
+    <script src="@routes.Assets.at("javascripts/test.js")"></script>
+} {
+    <p>@username</p>
+}

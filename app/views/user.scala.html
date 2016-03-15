@@ -1,0 +1,29 @@
+@import models.user.User
+@(banner: Html)(user: User, prompts: Seq[Prompt])
+
+@renderPrompt(prompt: Prompt) = {
+    <li>
+        <div>
+            <p>@prompt.content</p>
+        </div>
+    </li>
+
+}
+
+@layout("Welcome User")(banner) {
+
+} {
+    @if(user == null) {
+        <h1>User not found</h1>
+    } else {
+        <h1>Welcome @user.username!</h1>
+        <h3>User Info</h3>
+        <p>Email: @user.email</p>
+        <h3>User Prompts</h3>
+        <ul>
+        @prompts.map { prompt =>
+            @renderPrompt(prompt)
+        }
+        </ul>
+    }
+}
